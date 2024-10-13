@@ -85,4 +85,4 @@ Frontend-booking-system/
 
 ## Screenshots (Soon)
 
-Explore the project live [here](<https://fouad-gabr.github.io//>) or clone the repository to view the code and contribute to its development.
+Explore the project live [here](< https://fouad-gabr.github.io/Booking-and-reservation-system/>) or clone the repository to view the code and contribute to its development.

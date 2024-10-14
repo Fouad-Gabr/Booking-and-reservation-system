@@ -1,0 +1,59 @@
+a {
+    text-decoration: none;
+}
+
+.navbar {
+    background-color: #FFFFFF;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.navbar input[type="search"] {
+
+    height: 44px;
+    border-radius: 15px;
+    font-family: Inter;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 14.52px;
+    text-align: left;
+    outline: none;
+    border: none;
+    background-color: #F7F8FA;
+    transition: 0.5s ease;
+}
+
+.navbar input[type="search"]:focus {
+    outline: none;
+    box-shadow: none;
+    width: 300px;
+}
+
+.navbar form svg {
+    color: #BBC5D5;
+    width: 18.02px;
+    height: 18.02px;
+    top: 50%;
+    left: 15px;
+    transform: translatey(-50%);
+}
+
+.navbar .bangalore a {
+    text-decoration: none;
+    color: black;
+    height: 15px;
+    font-family: Inter;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 14.52px;
+}
+
+.navbar .navbar-nav .nav-link {
+    color: #11141A;
+    font-family: Inter;
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #797676;
+}

@@ -1,9 +1,11 @@
 import "./BookingDetails.css";
-
+import "bootstrap/dist/css/bootstrap.min.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 const BookingDetails = ({ location, service, price }) => {
   return (
     <>
-      <div className="card booking-card border-light">
+      <div className="card booking-card border-light w-sm-100 ">
         <div className="image-and-location d-flex align-items-center justify-content-around p-2">
           <img src="images/2-1.jpeg" alt="Service" className="w-50" />
           <h5 className="card-title">{location}</h5>
@@ -26,7 +28,10 @@ const BookingDetails = ({ location, service, price }) => {
           </div>
         </div>
       </div>
-      <button className="btn btn-primary w-100">Next</button>
+      <button className="btn btn-primary w-100 mt-3">
+        Next
+        <FontAwesomeIcon icon={faArrowRight} className="arrow-icon ms-3" />
+      </button>
     </>
   );
 };

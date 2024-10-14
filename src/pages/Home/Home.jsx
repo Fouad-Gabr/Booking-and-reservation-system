@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCirclePlay,
   faStarHalfAlt,
-} from "@fortawesome/free-regular-svg-icons"; // تأكد من استيراد الأيقونات
+} from "@fortawesome/free-regular-svg-icons";
 import {
   faChartLine,
   faClock,

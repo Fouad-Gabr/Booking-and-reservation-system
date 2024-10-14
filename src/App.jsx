@@ -1,11 +1,11 @@
 import "./App.css";
 import Navbar from "./components/Navbar/Navbar";
-import Home from "./pages/Home/Home"; // تأكد من مسار Home
+import Home from "./pages/Home/Home";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />

@@ -12,7 +12,8 @@ function Navbar() {
     <nav className="navbar navbar-expand-lg navbar-light text-md-center sticky-top">
       <div className="container">
         <Link className="navbar-brand ps-3" to="/">
-          <img src={logo} alt="Logo" width="35" height="45" className="w-100" />
+          <img src={logo} alt="Logo" width="80" height="70"/>
+          <h1 className="site-name-h1">EasyReserve</h1>
         </Link>
         <button
           className="navbar-toggler"

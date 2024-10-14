@@ -4,7 +4,7 @@ a {
 
 .navbar {
     background-color: #FFFFFF;
-    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .navbar input[type="search"] {
@@ -56,4 +56,22 @@ a {
 
 .navbar-nav .nav-link:hover {
     color: #797676;
+}
+
+
+.site-name-h1{
+    font-size: 20px;
+    color: #322A7D;
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+.site-name-h1:hover{
+    color: #FFA101;
+}
+
+.navbar-brand{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

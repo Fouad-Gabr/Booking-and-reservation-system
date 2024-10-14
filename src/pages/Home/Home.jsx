@@ -40,7 +40,7 @@ function Home() {
           <div className="row">
             <div className="col-md-6 col-lg-4 position-relative pb-4 pb-lg-0">
               <img
-                src="../../../public/images/1f67aafe842a79082827d95cb155510a.jpeg"
+                src="/images/1f67aafe842a79082827d95cb155510a.jpeg"
                 alt="Barbershop"
                 className="img-fluid full-height position-relative"
               />
@@ -53,14 +53,14 @@ function Home() {
               <div className="two-image d-flex flex-column gap-4">
                 <div className="position-relative vurve" data-work="vurve">
                   <img
-                    src="../../../public/images/2-1.jpeg"
+                    src="/images/2-1.jpeg"
                     alt="Barbershop interior 1"
                     className="img-fluid"
                   />
                 </div>
                 <div>
                   <img
-                    src="../../../public/images/2-2.jpeg"
+                    src="/images/2-2.jpeg"
                     alt="Barbershop interior 2"
                     className="img-fluid"
                   />
@@ -71,14 +71,14 @@ function Home() {
               <div className="two-image d-flex flex-column gap-4">
                 <div>
                   <img
-                    src="../../../public/images/3-1.jpeg"
+                    src="/images/3-1.jpeg"
                     alt="Barbershop service 1"
                     className="img-fluid"
                   />
                 </div>
                 <div className="position-relative">
                   <img
-                    src="../../../public/images/3-2.jpeg"
+                    src="/images/3-2.jpeg"
                     alt="Barbershop service 2"
                     className="img-fluid"
                   />

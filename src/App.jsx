@@ -8,14 +8,13 @@ import AdminDashboard from "./pages/DashBoard/AdminDashboard";
 
 function App() {
   return (
-    
     <BrowserRouter basename={import.meta.env.BASE_URL}>
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/businesses" element={<Time />} />
         <Route path="/login" element={<Review />} />
-        <Route path="/signup" element={<div>Sign Up Page</div>} />
+        <Route path="/signup" element={<AdminDashboard />} />
       </Routes>
     </BrowserRouter>
   );

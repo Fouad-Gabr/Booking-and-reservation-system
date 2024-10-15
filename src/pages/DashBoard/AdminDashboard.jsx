@@ -1,6 +1,6 @@
 import './AdminDashboard.css';
 import Booking from '../../components/Booking/Booking';
-import Review from '../../components/Review/Review';
+import ReviewCard from '../../components/ReviewCard/ReviewCard';
 export default function AdminDashboard() {
     return (
         <div className="dashboard">

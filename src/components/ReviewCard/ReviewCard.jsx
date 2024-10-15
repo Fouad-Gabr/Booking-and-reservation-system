@@ -1,6 +1,6 @@
-import './Review.css'
+import './ReviewCard.css'
 
-export default function Review({userName,rating,comment}){
+export default function ReviewCard({userName,rating,comment}){
     return(
         <div className="reviewer-card">
             <p>{userName}</p>

@@ -21,7 +21,8 @@ const Time = () => {
   return (
     <div className="time">
       <div className="container mt-4">
-        <p>Step 2 of 3: Select time</p>
+        <p>Step 2 of 3:</p>
+        <h3 className="fw-bold">Select Time</h3>
         <div className="row">
           <div className="col-md-9">
             <TimeSelection
@@ -33,7 +34,12 @@ const Time = () => {
             />
           </div>
           <div className="col-md-3">
-            <BookingDetails location="Vurve " service="Haircut " price={900} />
+            <BookingDetails
+              location="Vurve - Bangalore"
+              service="Haircut - Premier Stylist"
+              price="900"
+              showButton={true}
+            />
           </div>
         </div>
       </div>

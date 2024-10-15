@@ -52,8 +52,6 @@ const TimeSelection = ({
 
   return (
     <div className="time-selection card p-3 border-light">
-      <h3 className="fw-bold">Select Time</h3>
-
       <div className="d-flex justify-content-between align-items-center mb-3 fw-bold">
         <button className="btn btn-secondary" onClick={handlePrevMonth}>
           &lt;

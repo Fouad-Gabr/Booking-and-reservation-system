@@ -64,6 +64,11 @@ a {
     color: #322A7D;
     font-weight: bold;
     margin-left: 5px;
+    transition: 0.6s;
+    -webkit-transition: 0.6s;
+    -moz-transition: 0.6s;
+    -ms-transition: 0.6s;
+    -o-transition: 0.6s;
 }
 
 .site-name-h1:hover{

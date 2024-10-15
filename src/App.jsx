@@ -4,9 +4,11 @@ import Home from "./pages/Home/Home";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Time from "./pages/Time/Time";
 import Review from "./pages/Review/Review";
+import AdminDashboard from "./pages/DashBoard/AdminDashboard";
 
 function App() {
   return (
+    
     <BrowserRouter basename={import.meta.env.BASE_URL}>
       <Navbar />
       <Routes>

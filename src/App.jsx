@@ -6,7 +6,7 @@ import Time from "./pages/Time/Time";
 
 function App() {
   return (
-    <BrowserRouter basename="/Booking-and-reservation-system/">
+    <BrowserRouter basename={import.meta.env.DEV ? '/' : '/Booking-and-reservation-system/'}>
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />

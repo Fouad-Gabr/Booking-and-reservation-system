@@ -19,7 +19,7 @@ const BookingDetails = ({
           <img src="images/2-1.jpeg" alt="Service" className="" />
           <h5 className="card-title">{location}</h5>
         </div>
-        <div className="card-body">
+        <div className="card-body pt-0">
           <hr />
 
           {showDateTime && (

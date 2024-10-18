@@ -112,19 +112,19 @@ function Home() {
         </div>
 
         {isModalOpen && (
-          <div className="modal">
-            <div className="modal-content">
+          <div className="modal d-flex justify-content-center align-items-center position-fixed height-100 width-100">
+            <div className="modal-content bg-light p-4 position-relative">
               <span className="close" onClick={() => setIsModalOpen(false)}>
                 &times;
               </span>
-              <div className="modal-image-container">
+              <div className="modal-image-container text-center">
                 <img
                   src={images[currentImageIndex]}
                   alt={`image ${currentImageIndex + 1}`}
                   className="img-fluid"
                 />
               </div>
-              <div className="modal-controls">
+              <div className="modal-controls d-flex justify-content-around mt-2">
                 <button
                   className="arrow left-arrow"
                   onClick={handlePreviousImage}

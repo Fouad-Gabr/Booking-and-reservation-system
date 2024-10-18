@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./Home.css";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -13,6 +14,33 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 function Home() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const images = [
+    "images/num-one.jpg",
+    "images/num-two-1.jpg",
+    "images/num-two-2.jpg",
+    "images/num-three-1.jpg",
+    "images/num-three-2.jpg",
+    "images/num-4.jpg",
+    "images/num-5.jpg",
+    "images/num-6.jpg",
+    "images/num-7.jpg",
+  ];
+
+  const handleNextImage = () => {
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex === images.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+
+  const handlePreviousImage = () => {
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex === 0 ? images.length - 1 : prevIndex - 1
+    );
+  };
+
   return (
     <div className="landing pt-4 pb-4">
       <div className="container">
@@ -71,14 +99,46 @@ function Home() {
                     alt="Barbershop service 2"
                     className="img-fluid"
                   />
-                  <Link to="#" className="btn position-absolute btn-see-all">
-                    See all image
-                  </Link>
+                  <button
+                    onClick={() => setIsModalOpen(true)}
+                    className="btn position-absolute btn-see-all"
+                  >
+                    See all images
+                  </button>
                 </div>
               </div>
             </div>
           </div>
         </div>
+
+        {isModalOpen && (
+          <div className="modal">
+            <div className="modal-content">
+              <span className="close" onClick={() => setIsModalOpen(false)}>
+                &times;
+              </span>
+              <div className="modal-image-container">
+                <img
+                  src={images[currentImageIndex]}
+                  alt={`image ${currentImageIndex + 1}`}
+                  className="img-fluid"
+                />
+              </div>
+              <div className="modal-controls">
+                <button
+                  className="arrow left-arrow"
+                  onClick={handlePreviousImage}
+                >
+                  &lt;
+                </button>
+                <button className="arrow right-arrow" onClick={handleNextImage}>
+                  &gt;
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
         <div className="business-card mt-4 text-start text-sm-center">
           <div className="align-items-center">
             <div className="d-flex justify-content-between">

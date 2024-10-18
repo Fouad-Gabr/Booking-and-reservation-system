@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import TimeSelection from "../../components/TimeSelection/TimeSelection";
 import BookingDetails from "../../components/BookingDetails/BookingDetails";
 import "./Time.css";
@@ -6,17 +7,39 @@ import "./Time.css";
 const Time = () => {
   const [selectedTime, setSelectedTime] = useState(null);
   const [selectedDate, setSelectedDate] = useState(new Date());
+  const [times, setTimes] = useState([]);
+  const [message, setMessage] = useState("");
 
-  const times = [
-    "9:00 pm",
-    "4:45 pm",
-    "5:00 pm",
-    "5:15 pm",
-    "5:30 pm",
-    "5:45 pm",
-    "6:00 pm",
-    "8:00 pm",
-  ];
+  const fetchAvailableTimes = async () => {
+    try {
+      const response = await axios.get("/api/times");
+      setTimes(response.data);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const postBookingDetails = async () => {
+    try {
+      const response = await axios.post("/api/booking", {
+        time: selectedTime,
+        date: selectedDate,
+      });
+
+      if (response.status === 200) {
+        setMessage("Booking successful!");
+      } else {
+        setMessage("Booking failed. Please try again.");
+      }
+    } catch (err) {
+      setMessage("An error occurred. Please try again.");
+      console.error(err);
+    }
+  };
+
+  useEffect(() => {
+    fetchAvailableTimes();
+  }, []);
 
   return (
     <div className="time">
@@ -39,7 +62,9 @@ const Time = () => {
               service="Haircut - Premier Stylist"
               price="900"
               showButton={true}
+              onSubmit={postBookingDetails}
             />
+            {message && <div className="alert alert-info mt-3">{message}</div>}
           </div>
         </div>
       </div>

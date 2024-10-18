@@ -40,9 +40,9 @@ function Home() {
           <div className="row">
             <div className="col-md-6 col-lg-4 position-relative pb-4 pb-lg-0">
               <img
-                src="/images/1f67aafe842a79082827d95cb155510a.jpeg"
+                src="images/num-one.jpg"
                 alt="Barbershop"
-                className="img-fluid full-height position-relative"
+                className="img-fluid full-height position-relative  object-fit-cover"
               />
               <FontAwesomeIcon
                 icon={faCirclePlay}
@@ -53,14 +53,14 @@ function Home() {
               <div className="two-image d-flex flex-column gap-4">
                 <div className="position-relative vurve" data-work="vurve">
                   <img
-                    src="/images/2-1.jpeg"
+                    src="images/num-two-1.jpg"
                     alt="Barbershop interior 1"
                     className="img-fluid"
                   />
                 </div>
                 <div>
                   <img
-                    src="/images/2-2.jpeg"
+                    src="images/num-two-2.jpg"
                     alt="Barbershop interior 2"
                     className="img-fluid"
                   />
@@ -71,14 +71,14 @@ function Home() {
               <div className="two-image d-flex flex-column gap-4">
                 <div>
                   <img
-                    src="/images/3-1.jpeg"
+                    src="images/num-three-1.jpg"
                     alt="Barbershop service 1"
                     className="img-fluid"
                   />
                 </div>
                 <div className="position-relative">
                   <img
-                    src="/images/3-2.jpeg"
+                    src="images/num-three-2.jpg"
                     alt="Barbershop service 2"
                     className="img-fluid"
                   />

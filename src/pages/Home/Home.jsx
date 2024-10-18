@@ -6,7 +6,6 @@ import {
   faStarHalfAlt,
 } from "@fortawesome/free-regular-svg-icons";
 import {
-  faChartLine,
   faClock,
   faLocationDot,
   faWallet,

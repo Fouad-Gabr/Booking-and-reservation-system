@@ -12,7 +12,7 @@ function Navbar() {
     <nav className="navbar navbar-expand-lg navbar-light text-md-center sticky-top">
       <div className="container">
         <Link className="navbar-brand ps-3" to="/">
-          <img src={logo} alt="Logo" width="75" height="70"/>
+          <img src={logo} alt="Logo" width="75" height="70" />
           <h1 className="site-name-h1">EasyReserve</h1>
         </Link>
         <button
@@ -39,13 +39,10 @@ function Navbar() {
             <input
               className="form-control ps-5 btn-outline-none mt-2 mt-md-0"
               type="search"
-              placeholder="Search for a service or venue"
+              placeholder="View Available Services "
               aria-label="Search"
             />
           </form>
-          <div className="bangalore ps-3 d-none d-lg-block">
-            <Link to="#">in Bangalore</Link>
-          </div>
 
           <ul className="navbar-nav ms-lg-auto ps-3 mb-2 mb-lg-0 gap-md-3 gap-lg-4">
             <li className="nav-item">

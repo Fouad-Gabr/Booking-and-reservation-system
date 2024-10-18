@@ -20,21 +20,11 @@ function Home() {
         <div className="Barbershop d-sm-flex justify-content-between pb-3">
           <nav aria-label="breadcrumb">
             <ol className="breadcrumb">
-              <li className="breadcrumb-item">
-                <Link to="#">Home</Link>
-              </li>
-              <li className="breadcrumb-item">
-                <Link to="#">Barbershops</Link>
-              </li>
-              <li className="breadcrumb-item">
-                <Link to="#">Bangalore</Link>
-              </li>
-              <li className="breadcrumb-item active" aria-current="page">
-                Vurve
+              <li className="breadcrumb-item ">
+                <Link to="#">Home : </Link>
               </li>
             </ol>
           </nav>
-          <button className="btn btn-custom">Barbershop</button>
         </div>
         <div className="image-boxes">
           <div className="row">
@@ -93,7 +83,7 @@ function Home() {
         <div className="business-card mt-4 text-start text-sm-center">
           <div className="align-items-center">
             <div className="d-flex justify-content-between">
-              <h4 className="fw-bold">Vurve - Bangalore</h4>
+              <h4 className="fw-bold">FlexiHealth</h4>
               <div className="d-flex">
                 <button className="btn btn-enquire me-2">Enquire</button>
                 <button className="btn btn-book-now">Book now</button>
@@ -119,12 +109,8 @@ function Home() {
                     opens soon at 9:00am
                   </span>
                 </span>
-                <span className="dote"> MG Road, Bangalore</span>
+                <span className="dote">MG Road, Cairo</span>
               </div>
-              <p className="text-muted ms-md-auto">
-                <FontAwesomeIcon icon={faChartLine} /> 15 people recently
-                enquired
-              </p>
             </div>
           </div>
           <hr />
@@ -135,9 +121,15 @@ function Home() {
                 className="pe-3 pb-md-0 pb-3"
               />
               <p>
-                1st Floor, Icon Mall, 2981, 12th Main Rd, Indiranagar,
-                Bengaluru, Karnataka 560008 <br />
-                <Link to="#">Get directions</Link>
+                1st Floor, Cairo Festival City Mall, 11835, 90th Street, New
+                Cairo, Cairo, Egypt <br />
+                <Link
+                  to="https://maps.app.goo.gl/EmVMUkEgzhPmTbRU9"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Get directions
+                </Link>
               </p>
             </div>
             <div className="col-md-3 d-flex flex-md-row flex-column text-center text-md-start">

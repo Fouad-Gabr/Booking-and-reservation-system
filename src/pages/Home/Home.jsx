@@ -26,7 +26,6 @@ function Home() {
     "images/num-4.jpg",
     "images/num-5.jpg",
     "images/num-6.jpg",
-    "images/num-7.jpg",
   ];
 
   const handleNextImage = () => {

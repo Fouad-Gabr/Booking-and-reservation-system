@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Time from "./pages/Time/Time";
 import Review from "./pages/Review/Review";
 import AdminDashboard from "./pages/DashBoard/AdminDashboard";
+import Services from "./pages/Services/Services"
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/businesses" element={<Time />} />
         <Route path="/login" element={<Review />} />
         <Route path="/signup" element={<AdminDashboard />} />
+        <Route path="/services" element={<Services />} />
       </Routes>
     </BrowserRouter>
   );

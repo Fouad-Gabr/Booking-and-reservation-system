@@ -10,6 +10,10 @@
 }
 
 
+.book-details-img{
+    height: 5rem;
+}
+
 @keyframes moveRight {
     0% {
         transform: translateX(0);

@@ -12,7 +12,7 @@ function Navbar() {
     <nav className="navbar navbar-expand-lg navbar-light text-md-center sticky-top">
       <div className="container">
         <Link className="navbar-brand ps-3" to="/">
-          <img src={logo} alt="Logo" width="75" height="70" />
+          <img src={logo} className="mb-3" alt="Logo" width="75" height="70" />
           <h1 className="site-name-h1">EasyReserve</h1>
         </Link>
         <button
@@ -61,11 +61,8 @@ function Navbar() {
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="#">
-                <FontAwesomeIcon
-                  icon={faBars}
-                  className="fs-3 d-none d-lg-block"
-                />
+              <Link className="nav-link" to="/services">
+                Services
               </Link>
             </li>
           </ul>

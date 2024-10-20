@@ -18,7 +18,7 @@ const BookingDetails = ({
     <>
       <div className="card booking-card border-light w-sm-100 border">
         <div className="image-and-location d-flex align-items-center justify-content-around p-2">
-          <img src="images/2-1.jpeg" alt="Service" />
+          <img src="images/service-details.jpg" className="img-fluid book-details-img" alt="Service" />
           <h5 className="card-title">{location}</h5>
         </div>
         <div className="card-body pt-0">

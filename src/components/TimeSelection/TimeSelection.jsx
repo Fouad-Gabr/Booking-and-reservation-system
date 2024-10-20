@@ -30,12 +30,26 @@ const TimeSelection = ({
   );
   const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
-  const handleNextMonth = () =>
+  const handleNextMonth = () => {
     setCurrentMonthIndex((prevIndex) => (prevIndex + 1) % 12);
-  const handlePrevMonth = () =>
-    setCurrentMonthIndex((prevIndex) => (prevIndex - 1 + 12) % 12);
+  };
 
-  const handleDateSelection = (day) => setSelectedDate(new Date(day));
+  const handlePrevMonth = () => {
+    setCurrentMonthIndex((prevIndex) => (prevIndex - 1 + 12) % 12);
+  };
+
+  const scrollDays = (direction) => {
+    if (dayContainerRef.current) {
+      dayContainerRef.current.scrollBy({
+        left: direction * 100,
+        behavior: "smooth",
+      });
+    }
+  };
+
+  const handleDateSelection = (day) => {
+    setSelectedDate(new Date(day));
+  };
 
   return (
     <div className="time-selection card p-3 border-light">
@@ -55,6 +69,9 @@ const TimeSelection = ({
       </div>
 
       <div className="d-flex align-items-center">
+        <button className="btn btn-secondary" onClick={() => scrollDays(-1)}>
+          &lt;
+        </button>
         <div
           className="d-flex overflow-hidden flex-nowrap day-selection"
           ref={dayContainerRef}
@@ -63,6 +80,7 @@ const TimeSelection = ({
             const dayName = dayNames[day.getDay()];
             const isSelected =
               selectedDate.toDateString() === day.toDateString();
+
             return (
               <div key={day} className="text-center mx-2">
                 <div
@@ -79,6 +97,9 @@ const TimeSelection = ({
             );
           })}
         </div>
+        <button className="btn btn-secondary" onClick={() => scrollDays(1)}>
+          &gt;
+        </button>
       </div>
 
       <div className="date-list mt-3">

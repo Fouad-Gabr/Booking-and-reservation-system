@@ -11,9 +11,8 @@ export default function AdminDashboard() {
   const [servicePrice, setServicePrice] = useState("");
   const [services, setServices] = useState([]);
   const [bookings, setBookings] = useState([]);
-  const [editServiceId, setEditServiceId] = useState(null); // لحفظ معرف الخدمة المراد تعديلها
+  const [editServiceId, setEditServiceId] = useState(null);
 
-  // Fetch reviews
   useEffect(() => {
     if (activeTab === "reviews") {
       axios
@@ -27,7 +26,6 @@ export default function AdminDashboard() {
     }
   }, [activeTab]);
 
-  // Fetch services
   useEffect(() => {
     if (activeTab === "services") {
       axios
@@ -41,7 +39,6 @@ export default function AdminDashboard() {
     }
   }, [activeTab]);
 
-  // Fetch bookings
   useEffect(() => {
     if (activeTab === "bookings") {
       axios
@@ -67,7 +64,6 @@ export default function AdminDashboard() {
     };
 
     if (editServiceId) {
-      // حالة التحديث
       axios
         .put(`http://localhost:5001/services/${editServiceId}`, newService)
         .then((response) => {
@@ -76,16 +72,15 @@ export default function AdminDashboard() {
               service.id === editServiceId ? response.data : service
             )
           );
-          // إعادة تعيين القيم بعد التحديث
+
           setServiceName("");
           setServicePrice("");
-          setEditServiceId(null); // إعادة تعيين معرف الخدمة
+          setEditServiceId(null);
         })
         .catch((error) => {
           console.error("Error updating service:", error);
         });
     } else {
-      // حالة الإضافة
       axios
         .post("http://localhost:5001/services", newService)
         .then((response) => {
@@ -115,11 +110,10 @@ export default function AdminDashboard() {
     if (serviceToEdit) {
       setServiceName(serviceToEdit.name);
       setServicePrice(serviceToEdit.price);
-      setEditServiceId(serviceId); // تعيين معرف الخدمة للتعديل
+      setEditServiceId(serviceId);
     }
   };
 
-  // New function to handle canceling bookings
   const handleCancelBooking = (bookingId) => {
     axios
       .delete(`http://localhost:5001/bookings/${bookingId}`)

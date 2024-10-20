@@ -14,15 +14,15 @@ const TimeSelection = ({
   const dayContainerRef = useRef(null);
 
   const getDaysInMonth = (date) => {
-    const month = date.getMonth();
-    const year = date.getFullYear();
-    const days = [];
-
-    const daysInMonth = new Date(year, month + 1, 0).getDate();
-    for (let i = 1; i <= daysInMonth; i++) {
-      days.push(new Date(year, month, i));
-    }
-    return days;
+    const daysInMonth = new Date(
+      date.getFullYear(),
+      date.getMonth() + 1,
+      0
+    ).getDate();
+    return Array.from(
+      { length: daysInMonth },
+      (_, i) => new Date(date.getFullYear(), date.getMonth(), i + 1)
+    );
   };
 
   const days = getDaysInMonth(
@@ -38,16 +38,17 @@ const TimeSelection = ({
     setCurrentMonthIndex((prevIndex) => (prevIndex - 1 + 12) % 12);
   };
 
-  const scrollLeft = () => {
+  const scrollDays = (direction) => {
     if (dayContainerRef.current) {
-      dayContainerRef.current.scrollBy({ left: -100, behavior: "smooth" });
+      dayContainerRef.current.scrollBy({
+        left: direction * 100,
+        behavior: "smooth",
+      });
     }
   };
 
-  const scrollRight = () => {
-    if (dayContainerRef.current) {
-      dayContainerRef.current.scrollBy({ left: 100, behavior: "smooth" });
-    }
+  const handleDateSelection = (day) => {
+    setSelectedDate(new Date(day));
   };
 
   return (
@@ -68,7 +69,7 @@ const TimeSelection = ({
       </div>
 
       <div className="d-flex align-items-center">
-        <button className="btn btn-secondary" onClick={scrollLeft}>
+        <button className="btn btn-secondary" onClick={() => scrollDays(-1)}>
           &lt;
         </button>
         <div
@@ -78,9 +79,7 @@ const TimeSelection = ({
           {days.map((day) => {
             const dayName = dayNames[day.getDay()];
             const isSelected =
-              selectedDate.getDate() === day.getDate() &&
-              selectedDate.getMonth() === day.getMonth() &&
-              selectedDate.getFullYear() === day.getFullYear();
+              selectedDate.toDateString() === day.toDateString();
 
             return (
               <div key={day} className="text-center mx-2">
@@ -88,9 +87,7 @@ const TimeSelection = ({
                   className={`border rounded p-2 text-center day-box ${
                     isSelected ? "bg-primary text-white" : ""
                   }`}
-                  onClick={() => {
-                    setSelectedDate(day);
-                  }}
+                  onClick={() => handleDateSelection(day)}
                   style={{ width: "60px", cursor: "pointer" }}
                 >
                   <div className="fw-bold">{dayName}</div>
@@ -100,21 +97,21 @@ const TimeSelection = ({
             );
           })}
         </div>
-        <button className="btn btn-secondary" onClick={scrollRight}>
+        <button className="btn btn-secondary" onClick={() => scrollDays(1)}>
           &gt;
         </button>
       </div>
 
       <div className="date-list mt-3">
-        {times.map((timeSlot, index) => (
+        {times.map((timeSlot) => (
           <button
-            key={index}
+            key={timeSlot.id}
             className={`btn btn-light m-1 time-slot p-3 ${
-              selectedTime === timeSlot ? "selected" : ""
+              selectedTime?.id === timeSlot.id ? "selected" : ""
             }`}
             onClick={() => setSelectedTime(timeSlot)}
           >
-            {timeSlot}
+            {timeSlot.time}
           </button>
         ))}
       </div>

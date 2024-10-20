@@ -1,11 +1,14 @@
-import './ReviewCard.css'
+import "./ReviewCard.css";
 
-export default function ReviewCard({userName,rating,comment}){
-    return(
-        <div className="reviewer-card">
-            <p>{userName}</p>
-            <p>{rating}</p>
-            <p>{comment}</p>
-        </div>
-    )
+export default function ReviewCard({ userName, review, rating, title }) {
+  return (
+    <div className="reviewer-card">
+      <h5>{title}</h5>
+      <p>
+        <strong>{userName}</strong>
+      </p>
+      <p>{review}</p>
+      <p>Rating: {rating} ★</p>
+    </div>
+  );
 }

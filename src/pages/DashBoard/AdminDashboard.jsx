@@ -60,7 +60,7 @@ export default function AdminDashboard() {
     e.preventDefault();
     const newService = {
       name: serviceName,
-      price: servicePrice,
+      cost: servicePrice,
     };
 
     if (editServiceId) {
@@ -109,7 +109,7 @@ export default function AdminDashboard() {
     const serviceToEdit = services.find((service) => service.id === serviceId);
     if (serviceToEdit) {
       setServiceName(serviceToEdit.name);
-      setServicePrice(serviceToEdit.price);
+      setServicePrice(serviceToEdit.cost);
       setEditServiceId(serviceId);
     }
   };
@@ -197,7 +197,7 @@ export default function AdminDashboard() {
                 reviews.map((review) => (
                   <div className="col-md-4 mb-3" key={review.id}>
                     <ReviewCard
-                      userName={review.userName}
+                      userName={review.user}
                       review={review.review}
                       rating={review.rating}
                       title={review.title}
@@ -246,7 +246,7 @@ export default function AdminDashboard() {
                     className="list-group-item d-flex justify-content-between align-items-center"
                   >
                     <div>
-                      <strong>{service.name}</strong> - ${service.price}
+                      <strong>{service.name}</strong> - ${service.cost}
                     </div>
                     <div>
                       <button

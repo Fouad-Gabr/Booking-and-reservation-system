@@ -3,6 +3,7 @@ import Booking from "../../components/Booking/Booking";
 import ReviewCard from "../../components/ReviewCard/ReviewCard";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { toast } from "react-toastify"; // استيراد Toastify
 
 export default function AdminDashboard() {
   const [activeTab, setActiveTab] = useState("bookings");
@@ -72,24 +73,27 @@ export default function AdminDashboard() {
               service.id === editServiceId ? response.data : service
             )
           );
-
+          toast.success("Service updated successfully!");
           setServiceName("");
           setServicePrice("");
           setEditServiceId(null);
         })
         .catch((error) => {
           console.error("Error updating service:", error);
+          toast.error("Failed to update service!");
         });
     } else {
       axios
         .post("http://localhost:5001/services", newService)
         .then((response) => {
           setServices([...services, response.data]);
+          toast.success("Service added successfully!");
           setServiceName("");
           setServicePrice("");
         })
         .catch((error) => {
           console.error("Error adding service:", error);
+          toast.error("Failed to add service!");
         });
     }
   };
@@ -99,9 +103,11 @@ export default function AdminDashboard() {
       .delete(`http://localhost:5001/services/${serviceId}`)
       .then(() => {
         setServices(services.filter((service) => service.id !== serviceId));
+        toast.success("Service deleted successfully!");
       })
       .catch((error) => {
         console.error("Error deleting service:", error);
+        toast.error("Failed to delete service!");
       });
   };
 
@@ -119,9 +125,11 @@ export default function AdminDashboard() {
       .delete(`http://localhost:5001/bookings/${bookingId}`)
       .then(() => {
         setBookings(bookings.filter((booking) => booking.id !== bookingId));
+        toast.success("Booking canceled successfully!");
       })
       .catch((error) => {
         console.error("Error canceling booking:", error);
+        toast.error("Failed to cancel booking!");
       });
   };
 

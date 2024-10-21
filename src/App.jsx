@@ -6,6 +6,7 @@ import Time from "./pages/Time/Time";
 import Review from "./pages/Review/Review";
 import AdminDashboard from "./pages/DashBoard/AdminDashboard";
 import Services from "./pages/Services/Services"
+import Success from "./pages/Success/Success";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/login" element={<Review />} />
         <Route path="/signup" element={<AdminDashboard />} />
         <Route path="/services" element={<Services />} />
+        <Route path="/success" element={<Success />} />
       </Routes>
     </BrowserRouter>
   );

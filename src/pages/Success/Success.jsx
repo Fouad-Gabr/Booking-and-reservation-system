@@ -122,13 +122,13 @@ function Success() {
                           </div>
                           <div className="option-names-parent col-lg-4 w-md-100">
                             <div className="bg-white icon-parent rounded-4 p-1 my-1 mx-2 py-3 ms-0 w-100">
-                              <i class="fa-solid fa-calendar-days"></i>
+                              <i className="fa-solid fa-calendar-days"></i>
                             </div>
                             <h3 className="text-muted small-txt my-3">Reschedule</h3>
                           </div>
                           <div className="option-names-parent col-lg-4 w-md-100">
                             <div className="bg-white icon-parent rounded-4 p-1 my-1 mx-2 py-3 ms-0 w-100">
-                              <i class="fa-solid fa-circle-xmark"></i>
+                              <i className="fa-solid fa-circle-xmark"></i>
                             </div>
                             <h3 className="text-muted small-txt my-3">Cancel</h3>
                           </div>

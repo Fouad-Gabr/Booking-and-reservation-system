@@ -12,13 +12,13 @@
   height: calc(100vh - 112px);
 }
 
-.card {
+.form-card-parent {
   background-color: #6440b3;
   border-radius: 15px;
   max-width: 380px;
 }
 
-.form-control {
+.form-control-signup {
   background-color: #7b56d0;
   border: none;
   color: #fff;

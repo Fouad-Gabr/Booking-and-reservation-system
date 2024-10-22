@@ -35,7 +35,7 @@ const Signup = () => {
                 <div className="input-group">
                   <input
                     type="text"
-                    className="form-control"
+                    className="form-control form-control-signup"
                     id="name"
                     placeholder="Enter your name"
                     value={name}
@@ -55,7 +55,7 @@ const Signup = () => {
                 <div className="input-group">
                   <input
                     type="email"
-                    className="form-control"
+                    className="form-control form-control-signup"
                     id="email"
                     placeholder="Enter your email"
                     value={email}
@@ -75,7 +75,7 @@ const Signup = () => {
                 <div className="input-group">
                   <input
                     type="password"
-                    className="form-control"
+                    className="form-control form-control-signup"
                     id="password"
                     placeholder="Enter your password"
                     value={password}
@@ -95,7 +95,7 @@ const Signup = () => {
                 <div className="input-group">
                   <input
                     type="password"
-                    className="form-control"
+                    className="form-control form-control-signup"
                     id="confirmPassword"
                     placeholder="Confirm your password"
                     value={confirmPassword}

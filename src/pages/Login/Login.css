@@ -85,3 +85,7 @@ a {
 .forgotten {
   color: #ffa101;
 }
+
+.forgotten {
+  align-self: flex-start;
+}

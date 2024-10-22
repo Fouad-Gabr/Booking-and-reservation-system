@@ -123,8 +123,13 @@ const Signup = () => {
               </div>
 
               <div className="d-flex justify-content-between align-items-center">
-                <button type="submit" className="btn btn-primary">
-                  Sign Up
+                <button type="submit" className="btn btn-primary w-50 mx-1">
+                  Sign Up <br />
+                  as admin
+                </button>
+                <button type="submit" className="btn btn-primary w-50 mx-1">
+                  Sign Up <br />
+                  as user
                 </button>
               </div>
               <p className="text-center mt-3 already-word">

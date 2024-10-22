@@ -142,16 +142,23 @@ const Login = () => {
                 </label>
               </div>
 
-              <div className="d-flex justify-content-between align-items-center">
-                <a href="#" className="forgotten">
+              <div className="d-flex flex-column justify-content-between align-items-center">
+                <a href="#" className="forgotten mb-2">
                   Forgotten?
                 </a>
                 <button
                   type="submit"
-                  className="btn btn-primary"
+                  className="btn btn-primary w-50 mb-2"
                   disabled={loading}
                 >
-                  {loading ? "Logging In..." : "Log In"}
+                  {loading ? "Logging In..." : "Log In as admin"}
+                </button>
+                <button
+                  type="submit"
+                  className="btn btn-primary w-50 mb-0"
+                  disabled={loading}
+                >
+                  {loading ? "Logging In..." : "Log In as user"}
                 </button>
               </div>
               <p className="text-center mt-3 dont-have">
@@ -164,7 +171,7 @@ const Login = () => {
           </div>
         </div>
       </div>
-      <ToastContainer theme="dark"/>
+      <ToastContainer theme="dark" />
     </div>
   );
 };

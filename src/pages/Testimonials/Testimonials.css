@@ -36,21 +36,22 @@
   border-radius: 50%;
 }
 
-.form-control-testimonials{
-    max-width: 450px;
+.form-control-testimonials {
+  max-width: 450px;
 }
 
-.form-group-parent{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.form-group-parent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.our-customers,.submit-your-review{
-    color: #ffa101;
+.our-customers,
+.submit-your-review {
+  color: #ffa101;
 }
 
-.rating-num{
-    max-width: 200px;
+.rating-num {
+  max-width: 200px;
 }

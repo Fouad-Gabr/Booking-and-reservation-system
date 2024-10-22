@@ -13,17 +13,15 @@ const Testimonials = () => {
     title: "",
   });
 
-  // Helper function to check if the response is JSON
   const isJSON = async (response) => {
     const text = await response.text();
     try {
       return JSON.parse(text);
     } catch (error) {
-      return null; // Not a valid JSON response
+      return null;
     }
   };
 
-  // Fetch reviews from backend
   useEffect(() => {
     const fetchReviews = async () => {
       try {
@@ -50,7 +48,6 @@ const Testimonials = () => {
     fetchReviews();
   }, []);
 
-  // Handle input changes in the form
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setNewReview({
@@ -59,7 +56,6 @@ const Testimonials = () => {
     });
   };
 
-  // Submit the review
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -82,7 +78,6 @@ const Testimonials = () => {
 
       toast.success("Review added successfully!", { position: "top-center" });
 
-      // Clear form and re-fetch reviews to display the new one
       setNewReview({ user: "", review: "", rating: 5, title: "" });
       const updatedReviews = await fetch("/api/reviews");
       const updatedData = await isJSON(updatedReviews);
@@ -102,10 +97,8 @@ const Testimonials = () => {
         service, and overall experience.
       </p>
 
-      {/* Toastify container */}
       <ToastContainer />
 
-      {/* Review Submission Form */}
       <Form onSubmit={handleSubmit} className="mb-5">
         <h3 className="submit-your-review mt-5 mb-3">Submit Your Review</h3>
         <Row>
@@ -175,40 +168,45 @@ const Testimonials = () => {
         </Button>
       </Form>
 
-      {/* Display Reviews */}
-      <Row className="g-4">
-        {reviews.map((review, index) => (
-          <Col key={index} md={6} lg={4}>
-            <Card className="h-100 testimonial-card">
-              <Card.Body>
-                <div className="testimonial-rating mb-3">
-                  {Array.from({ length: review.rating }).map((_, i) => (
-                    <span key={i} className="text-warning">
-                      ★
+      {reviews.length > 0 ? (
+        <Row className="g-4">
+          {reviews.map((review, index) => (
+            <Col key={index} md={6} lg={4}>
+              <Card className="h-100 testimonial-card">
+                <Card.Body>
+                  <div className="testimonial-rating mb-3">
+                    {Array.from({ length: review.rating }).map((_, i) => (
+                      <span key={i} className="text-warning">
+                        ★
+                      </span>
+                    ))}
+                    <span className="rating-value ms-2">
+                      ({review.rating}.0)
                     </span>
-                  ))}
-                  <span className="rating-value ms-2">({review.rating}.0)</span>
-                </div>
-                <Card.Text>{review.review}</Card.Text>
-                <Card.Footer className="border-0 text-start">
-                  <div className="testimonial-author">
-                    <img
-                      src={`https://api.dicebear.com/5.x/initials/svg?seed=${review.user}`}
-                      alt={review.user}
-                      className="rounded-circle me-2"
-                      width="40"
-                    />
-                    <div className="author-info">
-                      <h6 className="mb-0">{review.user}</h6>
-                      <small>{review.title}</small>
-                    </div>
                   </div>
-                </Card.Footer>
-              </Card.Body>
-            </Card>
-          </Col>
-        ))}
-      </Row>
+                  <Card.Text>{review.review}</Card.Text>
+                  <Card.Footer className="border-0 text-start">
+                    <div className="testimonial-author">
+                      <img
+                        src={`https://api.dicebear.com/5.x/initials/svg?seed=${review.user}`}
+                        alt={review.user}
+                        className="rounded-circle me-2"
+                        width="40"
+                      />
+                      <div className="author-info">
+                        <h6 className="mb-0">{review.user}</h6>
+                        <small>{review.title}</small>
+                      </div>
+                    </div>
+                  </Card.Footer>
+                </Card.Body>
+              </Card>
+            </Col>
+          ))}
+        </Row>
+      ) : (
+        <p className="fs-4">No reviews available.</p>
+      )}
     </div>
   );
 };

@@ -15,6 +15,10 @@ const BookingDetails = ({
   showButton,
   onNextClick,
   nextButtonDisabled,
+  year,
+  month,
+  day,
+  timeSlot,
 }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState(''); // State to manage feedback messages
@@ -34,8 +38,8 @@ const BookingDetails = ({
           description: `${service}`, // Assuming the description is based on the service
           quantity: 1,
           unit_amount: {
-            currency_code: "USD", // Assuming the currency code is INR based on your earlier example
-            value: price.toString(), // Convert price to string
+            currency_code: "USD",
+            value: price.toString(),
           },
         },
       ];
@@ -45,7 +49,41 @@ const BookingDetails = ({
       window.location.href = response.data.approvalUrl; // Redirect to PayPal approval URL
     } catch (error) {
       console.error("Error creating PayPal order:", error);
-      setMessage("There was an error creating your PayPal order. Please try again."); // Update message state
+      setMessage("There was an error creating your PayPal order. Please try again.");
+    } finally {
+      setIsLoading(false); // Reset loading state
+    }
+  };
+
+  const handleCashCheckout = async () => {
+    // Check if the button is already loading
+    if (isLoading) {
+      return;
+    }
+
+    setIsLoading(true); // Set loading state
+
+    // Construct the request body
+    const appointmentData = {
+      year: year,
+      month: month, // Months are 0-based
+      day: day,
+      timeSlot: timeSlot, // Assuming this is the desired format
+      user: { /* user information */ }, //user id, get it from token, also when the auth is finished we would have access token to acces the api
+      service: service,
+      cost: price,
+      note: "Paying with cash", // You can modify this note as needed
+    };
+
+    try {
+      // Send a POST request to create the appointment
+      const response = await axios.post('/appointments', appointmentData);
+      // Handle the response as needed (e.g., display success message, redirect, etc.)
+      setMessage("Appointment created successfully!");
+      // Optionally, redirect or perform other actions
+    } catch (error) {
+      console.error("Error creating appointment:", error);
+      setMessage("There was an error creating your appointment. Please try again.");
     } finally {
       setIsLoading(false); // Reset loading state
     }
@@ -96,13 +134,13 @@ const BookingDetails = ({
             {isLoading ? 'Processing...' : 'Check out with PayPal'}
           </button>
           <button
-            className="btn btn-primary w-100 mt-3"
-            onClick={onNextClick}
-            disabled={nextButtonDisabled}
+            className={`btn ${isLoading ? 'btn-secondary' : 'btn-primary'} w-100 mt-3`}
+            onClick={handleCashCheckout}
+            disabled={nextButtonDisabled || isLoading} 
           >
-            Pay with cash and check out
+            {isLoading ? 'Processing...' : 'Pay with cash and check out'}
           </button>
-          {message && <div className="mt-3 text-danger">{message}</div>} {/* Paypal error*/}
+          {message && <div className="mt-3 text-danger">{message}</div>} {/* Error message */}
         </>
       )}
     </>

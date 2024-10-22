@@ -12,9 +12,12 @@ export default function AdminDashboard() {
   const [servicePrice, setServicePrice] = useState("");
   const [services, setServices] = useState([]);
   const [bookings, setBookings] = useState([]);
+  const [filteredBookings, setFilteredBookings] = useState([]);
   const [editServiceId, setEditServiceId] = useState(null);
   const [startWorkDay, setstartWorkDay] = useState("");
   const [endWorkDay, setendWorkDay] = useState("");
+  const [month, setMonth] = useState("");
+  const [year, setYear] = useState("");
 
   useEffect(() => {
     if (activeTab === "reviews") {
@@ -48,6 +51,7 @@ export default function AdminDashboard() {
         .get("http://localhost:5001/bookings")
         .then((response) => {
           setBookings(response.data);
+          setFilteredBookings(response.data);
         })
         .catch((error) => {
           console.error("Error fetching bookings:", error);
@@ -142,6 +146,9 @@ export default function AdminDashboard() {
       .delete(`http://localhost:5001/bookings/${bookingId}`)
       .then(() => {
         setBookings(bookings.filter((booking) => booking.id !== bookingId));
+        setFilteredBookings(
+          filteredBookings.filter((booking) => booking.id !== bookingId)
+        );
         toast.success("Booking canceled successfully!");
       })
       .catch((error) => {
@@ -168,13 +175,23 @@ export default function AdminDashboard() {
       });
   };
 
+  const fetchFilteredBookings = () => {
+    const filtered = bookings.filter((booking) => {
+      const bookingDate = new Date(booking.bookingDate);
+      const bookingMonth = bookingDate.getMonth() + 1;
+      const bookingYear = bookingDate.getFullYear();
+      return bookingMonth === parseInt(month) && bookingYear === parseInt(year);
+    });
+    setFilteredBookings(filtered);
+  };
+
   return (
     <div className="container my-5">
       <div className="card p-4 shadow-sm">
         <div className="text-center mb-4">
           <h2 className="fw-bold">Admin Dashboard</h2>
           <div className="my-4">
-            <h4>Total Bookings: {bookings.length}</h4>
+            <h4>Total Bookings: {filteredBookings.length}</h4>
           </div>
         </div>
 
@@ -215,30 +232,65 @@ export default function AdminDashboard() {
 
         <div className="tab-content">
           {activeTab === "bookings" && (
-            <div className="row">
-              {bookings.length > 0 ? (
-                bookings.map((booking) => (
-                  <div
-                    className="col-md-3 mb-3 d-flex flex-column"
-                    key={booking.id}
-                  >
-                    <Booking
-                      bookerName={booking.bookerName}
-                      service={booking.service}
-                      bookingDate={booking.bookingDate}
-                      bookingTime={booking.bookingTime}
-                    />
-                    <button
-                      className="btn btn-danger mt-2"
-                      onClick={() => handleCancelBooking(booking.id)}
+            <div>
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  fetchFilteredBookings();
+                }}
+              >
+                <div className="mb-3">
+                  <label className="form-label">Month</label>
+                  <input
+                    type="number"
+                    className="form-control"
+                    value={month}
+                    onChange={(e) => setMonth(e.target.value)}
+                    placeholder="Enter month (1-12)"
+                    required
+                  />
+                </div>
+                <div className="mb-3">
+                  <label className="form-label">Year</label>
+                  <input
+                    type="number"
+                    className="form-control"
+                    value={year}
+                    onChange={(e) => setYear(e.target.value)}
+                    placeholder="Enter year"
+                    required
+                  />
+                </div>
+                <button type="submit" className="btn btn-primary">
+                  Fetch Bookings
+                </button>
+              </form>
+
+              <div className="row mt-4">
+                {filteredBookings.length > 0 ? (
+                  filteredBookings.map((booking) => (
+                    <div
+                      className="col-md-3 mb-3 d-flex flex-column"
+                      key={booking.id}
                     >
-                      Cancel
-                    </button>
-                  </div>
-                ))
-              ) : (
-                <div>No bookings available</div>
-              )}
+                      <Booking
+                        bookerName={booking.bookerName}
+                        service={booking.service}
+                        bookingDate={booking.bookingDate}
+                        bookingTime={booking.bookingTime}
+                      />
+                      <button
+                        className="btn btn-danger mt-2"
+                        onClick={() => handleCancelBooking(booking.id)}
+                      >
+                        Cancel
+                      </button>
+                    </div>
+                  ))
+                ) : (
+                  <div>No bookings available for this month and year</div>
+                )}
+              </div>
             </div>
           )}
 

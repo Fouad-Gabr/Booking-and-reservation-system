@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import "./Home.css";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -17,6 +18,11 @@ function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
+  const [workdays, setWorkdays] = useState({
+    startWorkDay: "",
+    endWorkDay: "",
+  });
+
   const images = [
     "images/num-one.jpg",
     "images/num-two-1.jpg",
@@ -26,6 +32,7 @@ function Home() {
     "images/num-4.jpg",
     "images/num-5.jpg",
     "images/num-6.jpg",
+    "images/num-7.jpg",
   ];
 
   const handleNextImage = () => {
@@ -39,6 +46,56 @@ function Home() {
       prevIndex === 0 ? images.length - 1 : prevIndex - 1
     );
   };
+
+  const getDaysBetween = (start, end) => {
+    const daysOfWeek = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
+
+    const startIndex = daysOfWeek.indexOf(start);
+    const endIndex = daysOfWeek.indexOf(end);
+
+    if (startIndex === -1 || endIndex === -1) return [];
+
+    if (startIndex <= endIndex) {
+      return daysOfWeek.slice(startIndex, endIndex + 1);
+    } else {
+      return [
+        ...daysOfWeek.slice(startIndex),
+        ...daysOfWeek.slice(0, endIndex + 1),
+      ];
+    }
+  };
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:5001/Workdays")
+      .then((response) => {
+        const data = response.data;
+        if (data && data.startWorkDay && data.endWorkDay) {
+          setWorkdays({
+            startWorkDay: data.startWorkDay,
+            endWorkDay: data.endWorkDay,
+          });
+        } else {
+          console.error("Invalid data structure:", response.data);
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching workdays data:", error);
+      });
+  }, []);
+
+  const workDaysRange = getDaysBetween(
+    workdays.startWorkDay,
+    workdays.endWorkDay
+  );
 
   return (
     <div className="landing pt-4 pb-4">
@@ -193,8 +250,12 @@ function Home() {
             <div className="col-md-3 d-flex flex-md-row flex-column text-center text-md-start">
               <FontAwesomeIcon icon={faClock} className="pe-3 pb-md-0 pb-3" />
               <div>
-                <p>Mon</p>
-                <p>Tue - Sun</p>
+                <p>work days available</p>
+                {workDaysRange.length > 0 ? (
+                  <p>{workDaysRange.join(", ")}</p>
+                ) : (
+                  <p>No workdays available</p>
+                )}
               </div>
             </div>
             <div className="col-md-3 flex-md-row flex-column text-center text-md-start">

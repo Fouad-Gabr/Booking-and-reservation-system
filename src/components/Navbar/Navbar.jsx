@@ -2,12 +2,18 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMagnifyingGlass, faBars } from "@fortawesome/free-solid-svg-icons";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 import "./Navbar.css";
 import logo from "../../assets/logo.png";
 
 function Navbar() {
+  const [isCollapsed, setIsCollapsed] = useState(false);
+  const handleToggle = () => {
+    setIsCollapsed(!isCollapsed);
+  };
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light text-md-center sticky-top">
       <div className="container">
@@ -18,16 +24,18 @@ function Navbar() {
         <button
           className="navbar-toggler"
           type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
+          onClick={handleToggle}
           aria-controls="navbarSupportedContent"
-          aria-expanded="false"
+          aria-expanded={isCollapsed}
           aria-label="Toggle navigation"
         >
           <span className="navbar-toggler-icon"></span>
         </button>
 
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+        <div
+          className={`collapse navbar-collapse ${isCollapsed ? "show" : ""}`}
+          id="navbarSupportedContent"
+        >
           <form
             action="#"
             className="ms-3 d-flex position-relative flex-grow-1 flex-lg-grow-0 mb-3 mb-lg-0"
@@ -39,7 +47,7 @@ function Navbar() {
             <input
               className="form-control ps-5 btn-outline-none mt-2 mt-md-0"
               type="search"
-              placeholder="View Available Services "
+              placeholder="View Available Services"
               aria-label="Search"
             />
           </form>
@@ -57,7 +65,7 @@ function Navbar() {
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/review">
-                review
+                Review
               </Link>
             </li>
             <li className="nav-item">

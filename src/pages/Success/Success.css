@@ -25,10 +25,20 @@
   width: 1rem;
 }
 
-.icon-parent{
-    cursor: pointer;
+.icon-parent {
+  cursor: pointer;
+  transition: 0.3s;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -ms-transition: 0.3s;
+  -o-transition: 0.3s;
 }
 
-.small-txt{
-    font-size: 0.7rem;
+.small-txt {
+  font-size: 0.7rem;
+}
+
+.icon-parent:hover {
+  background-color: #ffa101 !important;
+  color: white !important;
 }

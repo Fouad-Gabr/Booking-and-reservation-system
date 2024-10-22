@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Login.css";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -18,7 +19,7 @@ const Login = () => {
       <div className="row w-100">
         <div className="col-md-6 d-none d-md-flex align-items-center justify-content-center left-section p-5">
           <div className="text-center text-white">
-            <h1 className="fs-1 website-name">EasyReserve</h1>
+            <h1 className="fs-1 website-name">EasyReserve™</h1>
             <p className="text-white-50">Your Path to Recovery Starts Here</p>
             <p className="px-5">
               You are about to access one of our core services: Personalized
@@ -102,9 +103,9 @@ const Login = () => {
               </div>
               <p className="text-center mt-3 dont-have">
                 Don't have an account?{" "}
-                <a href="#" className="signup-word">
+                <Link to="/signup" className="signup-word">
                   Sign Up
-                </a>
+                </Link>
               </p>
             </form>
           </div>

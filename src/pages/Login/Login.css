@@ -1,5 +1,5 @@
 .login-page {
-    height: calc(100vh - 112px);
+  height: calc(100vh - 112px);
   background-color: #4b2d83;
 }
 
@@ -10,13 +10,12 @@
 .right-section {
   background-color: #5939a6;
   height: calc(100vh - 112px);
-
 }
 
 .form-card-parent {
   background-color: #5939a6;
   border-radius: 15px;
-  max-width: 350px;
+  max-width: 380px;
 }
 
 .form-control-login {
@@ -35,10 +34,12 @@
   background-color: #ffa101;
   border: none;
 }
+
 .btn-primary:focus {
-    outline: none;
-    box-shadow: none;
+  outline: none;
+  box-shadow: none;
 }
+
 a {
   color: #fff;
 }
@@ -58,9 +59,11 @@ a {
   color: white;
   border: 1px solid #ffa101;
 }
+
 .btn-outline-light:focus {
   box-shadow: none;
 }
+
 .website-name {
   color: #ffa101;
 }
@@ -76,8 +79,9 @@ a {
 
 .form-check-label,
 .dont-have {
-    color: white;
+  color: #212529;
 }
-.signup-word, .forgotten{
-    color: #ffa101;
+.signup-word,
+.forgotten {
+  color: #ffa101;
 }

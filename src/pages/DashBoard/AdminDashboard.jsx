@@ -3,7 +3,7 @@ import Booking from "../../components/Booking/Booking";
 import ReviewCard from "../../components/ReviewCard/ReviewCard";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { toast } from "react-toastify"; // استيراد Toastify
+import { toast } from "react-toastify";
 
 export default function AdminDashboard() {
   const [activeTab, setActiveTab] = useState("bookings");
@@ -13,6 +13,8 @@ export default function AdminDashboard() {
   const [services, setServices] = useState([]);
   const [bookings, setBookings] = useState([]);
   const [editServiceId, setEditServiceId] = useState(null);
+  const [startWorkDay, setstartWorkDay] = useState("");
+  const [endWorkDay, setendWorkDay] = useState("");
 
   useEffect(() => {
     if (activeTab === "reviews") {
@@ -49,6 +51,21 @@ export default function AdminDashboard() {
         })
         .catch((error) => {
           console.error("Error fetching bookings:", error);
+        });
+    }
+  }, [activeTab]);
+
+  useEffect(() => {
+    if (activeTab === "Workdays") {
+      axios
+        .get("http://localhost:5001/Workdays")
+        .then((response) => {
+          const { startWorkDay, endWorkDay } = response.data;
+          setstartWorkDay(startWorkDay);
+          setendWorkDay(endWorkDay);
+        })
+        .catch((error) => {
+          console.error("Error fetching clinic Days:", error);
         });
     }
   }, [activeTab]);
@@ -133,6 +150,24 @@ export default function AdminDashboard() {
       });
   };
 
+  const handleWorkdaysSubmit = (e) => {
+    e.preventDefault();
+    const updatedDays = {
+      startWorkDay,
+      endWorkDay,
+    };
+
+    axios
+      .put("http://localhost:5001/Workdays", updatedDays)
+      .then(() => {
+        toast.success("Clinic Days updated successfully!");
+      })
+      .catch((error) => {
+        console.error("Error updating clinic Days:", error);
+        toast.error("Failed to update clinic Days!");
+      });
+  };
+
   return (
     <div className="container my-5">
       <div className="card p-4 shadow-sm">
@@ -166,6 +201,14 @@ export default function AdminDashboard() {
               onClick={() => handleTabChange("services")}
             >
               Services
+            </button>
+          </li>
+          <li className="nav-item">
+            <button
+              className={`nav-link ${activeTab === "Workdays" ? "active" : ""}`}
+              onClick={() => handleTabChange("Workdays")}
+            >
+              Clinic Days
             </button>
           </li>
         </ul>
@@ -205,7 +248,7 @@ export default function AdminDashboard() {
                 reviews.map((review) => (
                   <div className="col-md-4 mb-3" key={review.id}>
                     <ReviewCard
-                      userName={review.user}
+                      userName={review.userName}
                       review={review.review}
                       rating={review.rating}
                       title={review.title}
@@ -246,25 +289,23 @@ export default function AdminDashboard() {
                 </button>
               </form>
 
-              <h3 className="mt-4">Current Services</h3>
+              <h4 className="mt-4">Available Services</h4>
               <ul className="list-group">
                 {services.map((service) => (
                   <li
-                    key={service.id}
                     className="list-group-item d-flex justify-content-between align-items-center"
+                    key={service.id}
                   >
-                    <div>
-                      <strong>{service.name}</strong> - ${service.cost}
-                    </div>
+                    {service.name} - ${service.cost}
                     <div>
                       <button
-                        className="btn btn-secondary me-2"
+                        className="btn btn-warning btn-sm me-2"
                         onClick={() => handleUpdateService(service.id)}
                       >
-                        Update
+                        Edit
                       </button>
                       <button
-                        className="btn btn-danger"
+                        className="btn btn-danger btn-sm"
                         onClick={() => handleDeleteService(service.id)}
                       >
                         Delete
@@ -273,6 +314,52 @@ export default function AdminDashboard() {
                   </li>
                 ))}
               </ul>
+            </div>
+          )}
+
+          {activeTab === "Workdays" && (
+            <div>
+              <form onSubmit={handleWorkdaysSubmit}>
+                <div className="mb-3">
+                  <label className="form-label">Open Day</label>
+                  <select
+                    className="form-control"
+                    value={startWorkDay}
+                    onChange={(e) => setstartWorkDay(e.target.value)}
+                    aria-placeholder="Select Open Day"
+                    required
+                  >
+                    <option value="Sunday">Sunday</option>
+                    <option value="Monday">Monday</option>
+                    <option value="Tuesday">Tuesday</option>
+                    <option value="Wednesday">Wednesday</option>
+                    <option value="Thursday">Thursday</option>
+                    <option value="Friday">Friday</option>
+                    <option value="Saturday">Saturday</option>
+                  </select>
+                </div>
+                <div className="mb-3">
+                  <label className="form-label">Close Day</label>
+                  <select
+                    className="form-control"
+                    value={endWorkDay}
+                    onChange={(e) => setendWorkDay(e.target.value)}
+                    aria-placeholder="Select Close Day"
+                    required
+                  >
+                    <option value="Sunday">Sunday</option>
+                    <option value="Monday">Monday</option>
+                    <option value="Tuesday">Tuesday</option>
+                    <option value="Wednesday">Wednesday</option>
+                    <option value="Thursday">Thursday</option>
+                    <option value="Friday">Friday</option>
+                    <option value="Saturday">Saturday</option>
+                  </select>
+                </div>
+                <button type="submit" className="btn btn-primary">
+                  Update Workdays
+                </button>
+              </form>
             </div>
           )}
         </div>

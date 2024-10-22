@@ -21,10 +21,12 @@ a {
   transition: 0.5s ease;
 }
 
-.navbar input[type="search"]:focus {
-  outline: none;
-  box-shadow: none;
-  width: 300px;
+@media (min-width: 992px) {
+    .navbar input[type="search"]:focus {
+        outline: none;
+        box-shadow: none;
+        width: 300px;
+    }
 }
 
 .navbar form svg {

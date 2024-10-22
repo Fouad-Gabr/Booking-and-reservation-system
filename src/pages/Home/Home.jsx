@@ -3,10 +3,7 @@ import axios from "axios";
 import "./Home.css";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCirclePlay,
-  faStarHalfAlt,
-} from "@fortawesome/free-regular-svg-icons";
+import { faStarHalfAlt } from "@fortawesome/free-regular-svg-icons";
 import {
   faClock,
   faLocationDot,
@@ -22,6 +19,8 @@ function Home() {
     startWorkDay: "",
     endWorkDay: "",
   });
+
+  const [isOpen, setIsOpen] = useState(false);
 
   const images = [
     "images/num-one.jpg",
@@ -90,6 +89,23 @@ function Home() {
       .catch((error) => {
         console.error("Error fetching workdays data:", error);
       });
+  }, []);
+
+  const checkBusinessStatus = () => {
+    const now = new Date();
+    const currentHour = now.getHours();
+    const openingHour = 10;
+    const closingHour = 19;
+
+    if (currentHour >= openingHour && currentHour < closingHour) {
+      setIsOpen(true);
+    } else {
+      setIsOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    checkBusinessStatus();
   }, []);
 
   const workDaysRange = getDaysBetween(
@@ -215,10 +231,21 @@ function Home() {
               </div>
               <div>
                 <span className="business-status pe-3">
-                  Closed
-                  <span className="ms-1 text-muted dote">
-                    opens soon at 9:00am
-                  </span>
+                  {isOpen ? (
+                    <>
+                      Open
+                      <span className="ms-1 text-muted dote">
+                        closes at 7:00 pm
+                      </span>
+                    </>
+                  ) : (
+                    <>
+                      Closed
+                      <span className="ms-1 text-muted dote">
+                        opens soon at 10:00 am
+                      </span>
+                    </>
+                  )}
                 </span>
                 <span className="dote">MG Road, Cairo</span>
               </div>
@@ -256,7 +283,7 @@ function Home() {
             </div>
             <div className="col-md-3 flex-md-row flex-column text-center text-md-start">
               <p>Closed</p>
-              <p>10:00 am - 07:30 pm</p>
+              <p>10:00 am - 07:00 pm</p>
             </div>
             <div className="col-md-3 d-flex flex-md-row flex-column text-center text-md-start">
               <FontAwesomeIcon icon={faWallet} className="pe-3 pb-md-0 pb-3" />

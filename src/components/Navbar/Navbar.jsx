@@ -19,7 +19,7 @@ function Navbar() {
       <div className="container">
         <Link className="navbar-brand ps-3" to="/">
           <img src={logo} className="mb-3" alt="Logo" width="75" height="70" />
-          <h1 className="site-name-h1">EasyReserve</h1>
+          <h1 className="site-name-h1 fs-5 mx-1">EasyReserve</h1>
         </Link>
         <button
           className="navbar-toggler navbar-toggler-home"

@@ -9,7 +9,11 @@
     color: white;
 }
 
-
+.text-danger {
+    color: red;
+    font-weight: bold;
+  }
+  
 .book-details-img{
     height: 5rem;
 }

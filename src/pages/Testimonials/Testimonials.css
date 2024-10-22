@@ -1,7 +1,8 @@
 .testimonials-section {
-  background-color: #1c1b2d;
+  background-color: #4b2d83;
   color: #fff;
   padding: 40px;
+  min-height: calc(100vh - 112px);
 }
 
 .testimonial-card {

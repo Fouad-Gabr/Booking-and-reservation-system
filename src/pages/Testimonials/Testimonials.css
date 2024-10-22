@@ -1,0 +1,56 @@
+.testimonials-section {
+  background-color: #1c1b2d;
+  color: #fff;
+  padding: 40px;
+}
+
+.testimonial-card {
+  background-color: #282844;
+  color: #fff;
+  border-radius: 15px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.testimonial-rating {
+  font-size: 1.5rem;
+}
+
+.rating-value {
+  font-weight: bold;
+}
+
+.testimonial-author {
+  display: flex;
+  align-items: center;
+}
+
+.author-info h6 {
+  color: #fff;
+}
+
+.author-info small {
+  color: #ccc;
+}
+
+.testimonial-card img {
+  border-radius: 50%;
+}
+
+.form-control-testimonials{
+    max-width: 450px;
+}
+
+.form-group-parent{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.our-customers,.submit-your-review{
+    color: #ffa101;
+}
+
+.rating-num{
+    max-width: 200px;
+}

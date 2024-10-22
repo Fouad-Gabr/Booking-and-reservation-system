@@ -9,6 +9,7 @@ import Services from "./pages/Services/Services";
 import Success from "./pages/Success/Success";
 import Login from "./pages/Login/Login";
 import Signup from "./pages/Signup/Signup";
+import Testimonials from "./pages/Testimonials/Testimonials";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/success" element={<Success />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/testimonials" element={<Testimonials />} />
       </Routes>
     </BrowserRouter>
   );

@@ -74,7 +74,7 @@ const Time = () => {
                 selectedTime?.time
               }`}
               showDateTime={!!selectedTime}
-              showButton={true}
+              showButtonNext={true}
               onNextClick={postBookingDetails}
               nextButtonDisabled={!selectedTime || !selectedDate}
             />

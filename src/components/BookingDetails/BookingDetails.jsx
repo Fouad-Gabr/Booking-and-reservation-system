@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import "./BookingDetails.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
-import axios from 'axios';
+import axios from "axios";
 
 const BookingDetails = ({
   location,
@@ -12,42 +12,47 @@ const BookingDetails = ({
   duration,
   dateTime,
   showDateTime,
-  showButton,
+  showButtonNext,
   onNextClick,
   nextButtonDisabled,
+  showButtonPayPal,
+  showButtonCash,
+  showButtonBook,
 }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [message, setMessage] = useState(''); // State to manage feedback messages
+  const [message, setMessage] = useState("");
 
   const handlePayPalCheckout = async () => {
-    // Check if the button is already loading
-    if (isLoading) {
-      return;
-    }
+    if (isLoading) return;
 
-    setIsLoading(true); // Set loading state
+    setIsLoading(true);
+    setMessage("");
 
     try {
       const items = [
         {
-          name: service, // Using the service prop
-          description: `${service}`, // Assuming the description is based on the service
+          name: service,
+          description: `${service}`,
           quantity: 1,
           unit_amount: {
-            currency_code: "USD", // Assuming the currency code is INR based on your earlier example
-            value: price.toString(), // Convert price to string
+            currency_code: "USD",
+            value: price.toString(),
           },
         },
       ];
 
-      // Create PayPal order only when the button is pressed
-      const response = await axios.post('/paypal/create-order', { items, cost: price });
-      window.location.href = response.data.approvalUrl; // Redirect to PayPal approval URL
+      const response = await axios.post("/paypal/create-order", {
+        items,
+        cost: price,
+      });
+      window.location.href = response.data.approvalUrl;
     } catch (error) {
       console.error("Error creating PayPal order:", error);
-      setMessage("There was an error creating your PayPal order. Please try again."); // Update message state
+      setMessage(
+        "There was an error creating your PayPal order. Please try again."
+      );
     } finally {
-      setIsLoading(false); // Reset loading state
+      setIsLoading(false);
     }
   };
 
@@ -55,7 +60,11 @@ const BookingDetails = ({
     <>
       <div className="card booking-card border-light w-sm-100 border">
         <div className="image-and-location d-flex align-items-center justify-content-around p-2">
-          <img src="images/service-details.jpg" className="img-fluid book-details-img" alt="Service" />
+          <img
+            src="images/service-details.jpg"
+            className="img-fluid book-details-img"
+            alt="Service"
+          />
           <h5 className="card-title">{location}</h5>
         </div>
         <div className="card-body pt-0">
@@ -78,33 +87,47 @@ const BookingDetails = ({
           </div>
         </div>
       </div>
-      {showButton && (
-        <>
-          <button
-            className="btn btn-primary w-100 mt-3"
-            onClick={onNextClick}
-            disabled={nextButtonDisabled}
-          >
-            Next
-            <FontAwesomeIcon icon={faArrowRight} className="arrow-icon ms-3" />
-          </button>
-          <button
-            className={`btn ${isLoading ? 'btn-secondary' : 'btn-primary'} w-100 mt-3`}
-            onClick={handlePayPalCheckout}
-            disabled={nextButtonDisabled || isLoading} 
-          >
-            {isLoading ? 'Processing...' : 'Check out with PayPal'}
-          </button>
-          <button
-            className="btn btn-primary w-100 mt-3"
-            onClick={onNextClick}
-            disabled={nextButtonDisabled}
-          >
-            Pay with cash and check out
-          </button>
-          {message && <div className="mt-3 text-danger">{message}</div>} {/* Paypal error*/}
-        </>
+      {showButtonNext && (
+        <button
+          className="btn btn-primary w-100 mt-3"
+          onClick={onNextClick}
+          disabled={nextButtonDisabled}
+        >
+          Next
+          <FontAwesomeIcon icon={faArrowRight} className="arrow-icon ms-3" />
+        </button>
       )}
+      {showButtonBook && (
+        <button
+          className="btn btn-primary w-100 mt-3"
+          onClick={onNextClick}
+          disabled={nextButtonDisabled}
+        >
+          Book Now
+          <FontAwesomeIcon icon={faArrowRight} className="arrow-icon ms-3" />
+        </button>
+      )}
+      {showButtonPayPal && (
+        <button
+          className={`btn ${
+            isLoading ? "btn-secondary" : "btn-primary"
+          } w-100 mt-3`}
+          onClick={handlePayPalCheckout}
+          disabled={nextButtonDisabled || isLoading}
+        >
+          {isLoading ? "Processing..." : "Check out with PayPal"}
+        </button>
+      )}
+      {showButtonCash && (
+        <button
+          className="btn btn-primary w-100 mt-3"
+          onClick={onNextClick}
+          disabled={nextButtonDisabled}
+        >
+          Pay with cash and check out
+        </button>
+      )}
+      {message && <div className="mt-3 text-danger">{message}</div>}
     </>
   );
 };

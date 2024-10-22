@@ -3,6 +3,7 @@ import Booking from "../../components/Booking/Booking";
 import ReviewCard from "../../components/ReviewCard/ReviewCard";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { toast } from "react-toastify"; // استيراد Toastify
 
 export default function AdminDashboard() {
   const [activeTab, setActiveTab] = useState("bookings");
@@ -60,7 +61,7 @@ export default function AdminDashboard() {
     e.preventDefault();
     const newService = {
       name: serviceName,
-      price: servicePrice,
+      cost: servicePrice,
     };
 
     if (editServiceId) {
@@ -72,24 +73,27 @@ export default function AdminDashboard() {
               service.id === editServiceId ? response.data : service
             )
           );
-
+          toast.success("Service updated successfully!");
           setServiceName("");
           setServicePrice("");
           setEditServiceId(null);
         })
         .catch((error) => {
           console.error("Error updating service:", error);
+          toast.error("Failed to update service!");
         });
     } else {
       axios
         .post("http://localhost:5001/services", newService)
         .then((response) => {
           setServices([...services, response.data]);
+          toast.success("Service added successfully!");
           setServiceName("");
           setServicePrice("");
         })
         .catch((error) => {
           console.error("Error adding service:", error);
+          toast.error("Failed to add service!");
         });
     }
   };
@@ -99,9 +103,11 @@ export default function AdminDashboard() {
       .delete(`http://localhost:5001/services/${serviceId}`)
       .then(() => {
         setServices(services.filter((service) => service.id !== serviceId));
+        toast.success("Service deleted successfully!");
       })
       .catch((error) => {
         console.error("Error deleting service:", error);
+        toast.error("Failed to delete service!");
       });
   };
 
@@ -109,7 +115,7 @@ export default function AdminDashboard() {
     const serviceToEdit = services.find((service) => service.id === serviceId);
     if (serviceToEdit) {
       setServiceName(serviceToEdit.name);
-      setServicePrice(serviceToEdit.price);
+      setServicePrice(serviceToEdit.cost);
       setEditServiceId(serviceId);
     }
   };
@@ -119,9 +125,11 @@ export default function AdminDashboard() {
       .delete(`http://localhost:5001/bookings/${bookingId}`)
       .then(() => {
         setBookings(bookings.filter((booking) => booking.id !== bookingId));
+        toast.success("Booking canceled successfully!");
       })
       .catch((error) => {
         console.error("Error canceling booking:", error);
+        toast.error("Failed to cancel booking!");
       });
   };
 
@@ -197,7 +205,7 @@ export default function AdminDashboard() {
                 reviews.map((review) => (
                   <div className="col-md-4 mb-3" key={review.id}>
                     <ReviewCard
-                      userName={review.userName}
+                      userName={review.user}
                       review={review.review}
                       rating={review.rating}
                       title={review.title}
@@ -246,7 +254,7 @@ export default function AdminDashboard() {
                     className="list-group-item d-flex justify-content-between align-items-center"
                   >
                     <div>
-                      <strong>{service.name}</strong> - ${service.price}
+                      <strong>{service.name}</strong> - ${service.cost}
                     </div>
                     <div>
                       <button

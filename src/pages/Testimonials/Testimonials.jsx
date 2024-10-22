@@ -90,21 +90,24 @@ const Testimonials = () => {
   };
 
   return (
-    <div className="testimonials-section text-center py-5">
+    <div className="testimonials-section d-flex justify-content-center align-items-center flex-column text-center py-5">
       <h2 className="our-customers">Our Customers Love What We Do</h2>
-      <p className="lead">
+      <p className="lead mb-5">
         Read their reviews to discover why they're raving about our quality,
         service, and overall experience.
       </p>
 
       <ToastContainer theme="dark" />
 
-      <Form onSubmit={handleSubmit} className="mb-5">
-        <h3 className="submit-your-review mt-5 mb-3">Submit Your Review</h3>
+      <Form
+        onSubmit={handleSubmit}
+        className="mb-5 card form-card-parent d-flex justify-content-center align-items-center form-card-testimonials p-4 shadow-lg border-0"
+      >
+        <h3 className="submit-your-review mt-3 mb-4">Submit Your Review</h3>
         <Row>
           <Col className="col-12">
             <Form.Group className="mb-3 form-group-parent">
-              <Form.Label>Your Name</Form.Label>
+              <Form.Label className="testi-name">Your Name</Form.Label>
               <Form.Control
                 className="form-control-testimonials mb-3"
                 type="text"
@@ -118,7 +121,7 @@ const Testimonials = () => {
           </Col>
           <Col className="col-12">
             <Form.Group className="mb-3 form-group-parent">
-              <Form.Label>Review Title</Form.Label>
+              <Form.Label className="testi-title">Review Title</Form.Label>
               <Form.Control
                 className="form-control-testimonials mb-3"
                 type="text"
@@ -132,7 +135,7 @@ const Testimonials = () => {
           </Col>
           <Col className="col-12">
             <Form.Group className="mb-3 form-group-parent">
-              <Form.Label>Your Review</Form.Label>
+              <Form.Label className="testi-review">Your Review</Form.Label>
               <Form.Control
                 className="form-control-testimonials mb-3"
                 as="textarea"
@@ -147,7 +150,7 @@ const Testimonials = () => {
           </Col>
           <Col className="col-12">
             <Form.Group className="mb-3 form-group-parent">
-              <Form.Label>Rating</Form.Label>
+              <Form.Label className="testi-rating">Rating</Form.Label>
               <Form.Select
                 className="form-control-testimonials rating-num fs-4 mb-3"
                 name="rating"
@@ -163,7 +166,11 @@ const Testimonials = () => {
             </Form.Group>
           </Col>
         </Row>
-        <Button type="submit" variant="primary">
+        <Button
+          type="submit"
+          variant="primary"
+          className="submit-review-btn fs-5"
+        >
           Submit Review
         </Button>
       </Form>
@@ -212,6 +219,9 @@ const Testimonials = () => {
 };
 
 export default Testimonials;
+
+
+
 
 // import React, { useEffect, useState } from 'react';
 // import { Card, Col, Row, Alert } from 'react-bootstrap';

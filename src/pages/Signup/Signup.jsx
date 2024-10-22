@@ -29,7 +29,7 @@ const Signup = () => {
             </h2>
             <form onSubmit={handleSubmit}>
               <div className="mb-3">
-                <label htmlFor="name" className="form-label">
+                <label htmlFor="name" className="form-label Label">
                   Your Name
                 </label>
                 <div className="input-group">
@@ -49,7 +49,7 @@ const Signup = () => {
               </div>
 
               <div className="mb-3">
-                <label htmlFor="email" className="form-label">
+                <label htmlFor="email" className="form-label Label">
                   Your Email
                 </label>
                 <div className="input-group">
@@ -69,7 +69,7 @@ const Signup = () => {
               </div>
 
               <div className="mb-3">
-                <label htmlFor="password" className="form-label">
+                <label htmlFor="password" className="form-label Label">
                   Your Password
                 </label>
                 <div className="input-group">
@@ -89,7 +89,7 @@ const Signup = () => {
               </div>
 
               <div className="mb-3">
-                <label htmlFor="confirmPassword" className="form-label">
+                <label htmlFor="confirmPassword" className="form-label Label">
                   Confirm Password
                 </label>
                 <div className="input-group">

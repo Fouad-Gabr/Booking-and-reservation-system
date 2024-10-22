@@ -18,6 +18,10 @@ const BookingDetails = ({
   showButtonPayPal,
   showButtonCash,
   showButtonBook,
+  year, // Add year prop
+  month, // Add month prop
+  day, // Add day prop
+  timeSlot, // Add timeSlot prop
 }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState("");
@@ -48,11 +52,42 @@ const BookingDetails = ({
       window.location.href = response.data.approvalUrl;
     } catch (error) {
       console.error("Error creating PayPal order:", error);
-      setMessage(
-        "There was an error creating your PayPal order. Please try again."
-      );
+      setMessage("There was an error creating your PayPal order. Please try again.");
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const handleCashCheckout = async () => {
+    // Check if the button is already loading
+    if (isLoading) {
+      return;
+    }
+
+    setIsLoading(true); // Set loading state
+
+    // Construct the request body
+    const appointmentData = {
+      year: year,
+      month: month, // Months are 0-based
+      day: day,
+      timeSlot: timeSlot, // Assuming this is the desired format
+      user: { /* user information */ }, // user id, get it from token
+      service: service,
+      cost: price,
+      note: "Paying with cash", // You can modify this note as needed
+    };
+
+    try {
+      // Send a POST request to create the appointment
+      const response = await axios.post('/appointments', appointmentData);
+      setMessage("Appointment created successfully!");
+      // Optionally, redirect or perform other actions
+    } catch (error) {
+      console.error("Error creating appointment:", error);
+      setMessage("There was an error creating your appointment. Please try again.");
+    } finally {
+      setIsLoading(false); // Reset loading state
     }
   };
 
@@ -109,9 +144,7 @@ const BookingDetails = ({
       )}
       {showButtonPayPal && (
         <button
-          className={`btn ${
-            isLoading ? "btn-secondary" : "btn-primary"
-          } w-100 mt-3`}
+          className={`btn ${isLoading ? "btn-secondary" : "btn-primary"} w-100 mt-3`}
           onClick={handlePayPalCheckout}
           disabled={nextButtonDisabled || isLoading}
         >
@@ -120,11 +153,11 @@ const BookingDetails = ({
       )}
       {showButtonCash && (
         <button
-          className="btn btn-primary w-100 mt-3"
-          onClick={onNextClick}
-          disabled={nextButtonDisabled}
+          className={`btn ${isLoading ? "btn-secondary" : "btn-primary"} w-100 mt-3`}
+          onClick={handleCashCheckout}
+          disabled={nextButtonDisabled || isLoading}
         >
-          Pay with cash and check out
+          {isLoading ? "Processing..." : "Pay with cash and check out"}
         </button>
       )}
       {message && <div className="mt-3 text-danger">{message}</div>}

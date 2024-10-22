@@ -22,7 +22,7 @@ function Navbar() {
           <h1 className="site-name-h1">EasyReserve</h1>
         </Link>
         <button
-          className="navbar-toggler"
+          className="navbar-toggler navbar-toggler-home"
           type="button"
           onClick={handleToggle}
           aria-controls="navbarSupportedContent"

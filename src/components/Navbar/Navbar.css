@@ -1,85 +1,92 @@
 a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 .navbar {
-    background-color: #FFFFFF;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .navbar input[type="search"] {
-
-    height: 44px;
-    border-radius: 15px;
-    font-family: Inter;
-    font-size: 12px;
-    font-weight: 400;
-    line-height: 14.52px;
-    text-align: left;
-    outline: none;
-    border: none;
-    background-color: #F7F8FA;
-    transition: 0.5s ease;
+  height: 44px;
+  border-radius: 15px;
+  font-family: Inter;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14.52px;
+  text-align: left;
+  outline: none;
+  border: none;
+  background-color: #f7f8fa;
+  transition: 0.5s ease;
 }
 
 .navbar input[type="search"]:focus {
-    outline: none;
-    box-shadow: none;
-    width: 300px;
+  outline: none;
+  box-shadow: none;
+  width: 300px;
 }
 
 .navbar form svg {
-    color: #BBC5D5;
-    width: 18.02px;
-    height: 18.02px;
-    top: 50%;
-    left: 15px;
-    transform: translatey(-50%);
+  color: #bbc5d5;
+  width: 18.02px;
+  height: 18.02px;
+  top: 50%;
+  left: 15px;
+  transform: translatey(-50%);
 }
 
 .navbar .bangalore a {
-    text-decoration: none;
-    color: black;
-    height: 15px;
-    font-family: Inter;
-    font-size: 12px;
-    font-weight: 400;
-    line-height: 14.52px;
+  text-decoration: none;
+  color: black;
+  height: 15px;
+  font-family: Inter;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14.52px;
 }
 
 .navbar .navbar-nav .nav-link {
-    color: #11141A;
-    font-family: Inter;
-    font-size: 17px;
-    font-weight: 600;
+  color: #11141a;
+  font-family: Inter;
+  font-size: 17px;
+  font-weight: 600;
 }
 
 .navbar-nav .nav-link:hover {
-    color: #FFA101 !important;
+  color: #ffa101 !important;
 }
 
 .navbar-nav .nav-link:focus {
-    color: #FFA101 !important;
+  color: #ffa101 !important;
 }
 
 .site-name-h1 {
-    font-size: 20px;
-    color: #322A7D;
-    font-weight: bold;
-    margin-left: 5px;
-    transition: 0.6s;
-    -webkit-transition: 0.6s;
-    -moz-transition: 0.6s;
-    -ms-transition: 0.6s;
-    -o-transition: 0.6s;
+  font-size: 20px;
+  color: #322a7d;
+  font-weight: bold;
+  margin-left: 5px;
+  transition: 0.6s;
+  -webkit-transition: 0.6s;
+  -moz-transition: 0.6s;
+  -ms-transition: 0.6s;
+  -o-transition: 0.6s;
 }
 
 .site-name-h1:hover {
-    color: #FFA101;
+  color: #ffa101;
 }
 
 .navbar-brand {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar-toggler-home:hover {
+  background-color: #ffa101;
+}
+
+.navbar-toggler-home:focus {
+  box-shadow: none !important;
 }

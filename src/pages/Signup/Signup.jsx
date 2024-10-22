@@ -22,7 +22,7 @@ const Signup = () => {
   return (
     <div className="container-fluid h-sm-auto signup-page d-flex align-items-center justify-content-center p-0">
       <div className="row w-100">
-        <div className="col-md-6 d-flex h-sm-auto align-items-center justify-content-center right-section p-4">
+        <div className="col-md-6 d-flex h-sm-auto align-items-center justify-content-center right-section p-2">
           <div className="card form-card-parent h-sm-auto px-4 pt-3 pb-1 shadow-lg border-0">
             <h2 className="text-center mb-3 form-title">
               Sign Up for EasyReserve™

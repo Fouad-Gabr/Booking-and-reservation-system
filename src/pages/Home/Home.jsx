@@ -117,10 +117,6 @@ function Home() {
                 alt="Barbershop"
                 className="img-fluid full-height position-relative  object-fit-cover"
               />
-              <FontAwesomeIcon
-                icon={faCirclePlay}
-                className="position-absolute"
-              />
             </div>
             <div className="col-md-6 col-lg-4 pb-4 pb-md-0">
               <div className="two-image d-flex flex-column gap-4">

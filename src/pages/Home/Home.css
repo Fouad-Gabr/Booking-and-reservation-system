@@ -41,14 +41,6 @@
     height: 100%;
 }
 
-.landing .image-boxes .row>div svg {
-    font-size: 35px;
-    top: 50%;
-    left: 50%;
-    color: white;
-    transform: translateY(-50%);
-}
-
 .landing .image-boxes img {
     border-radius: 12px;
 }

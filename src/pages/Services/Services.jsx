@@ -17,7 +17,10 @@ function Services() {
         <div className="row">
           <div className="col-md-9">
             <div className="services-parent d-flex flex-column bg-white rounded p-3">
-              <div className="service p-2 d-flex border-bottom" data-service="selected">
+              <div
+                className="service p-2 d-flex border-bottom"
+                data-service="selected"
+              >
                 <i className="fa-solid fa-check p-2 m-2 rounded-circle"></i>
                 <div className="details">
                   <div className="service-name d-flex align-items-base-line">
@@ -88,7 +91,7 @@ function Services() {
               dateTime="Sun 16 July 2023 at 5:00pm"
               duration="1h duration, ends at 6:00pm"
               showDateTime={true}
-              showButton={true}
+              showButtonNext={true}
             />
           </div>
         </div>

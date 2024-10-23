@@ -57,15 +57,27 @@
   max-width: 200px;
 }
 
-.form-card-testimonials{
+.form-card-testimonials {
   max-width: 420px !important;
 }
 
-.testi-name,.testi-title,.testi-review,.testi-rating{
+.testi-name,
+.testi-title,
+.testi-review,
+.testi-rating {
   color: white;
 }
 
-.submit-review-btn{
+.submit-review-btn {
   width: fit-content;
   padding: 0.5rem 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .Toastify__toast-container {
+    max-width: 80% !important;
+  }
+  .Toastify__toast {
+    max-width: 80% !important;
+  }
 }

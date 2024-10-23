@@ -75,3 +75,22 @@ a {
 .login-word {
   color: #ffa101;
 }
+
+.signup-page .text-danger {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: bisque;
+  z-index: 10000;
+  border-radius: 6px;
+  padding: 0.5rem;
+  width: 50%;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -o-border-radius: 6px;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+}

@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Signup.css";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Signup = () => {
   const [name, setName] = useState("");
@@ -9,18 +12,57 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [acceptTerms, setAcceptTerms] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleSubmit = (e) => {
+  const validatePassword = (password) => {
+    const passwordRegex = /^(?=.*[A-Za-z]).{8,16}$/;
+    return passwordRegex.test(password);
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (password !== confirmPassword) {
-      alert("Passwords do not match!");
+      setError("Passwords do not match!");
       return;
     }
-    console.log({ name, email, password, acceptTerms });
+    if (!validatePassword(password)) {
+      setError(
+        "Password must be 8-16 characters long and contain at least one letter."
+      );
+      return;
+    }
+
+    setError("");
+
+    const data = {
+      name,
+      email,
+      password,
+      acceptTerms,
+    };
+
+    try {
+      const response = await axios.post(
+        "https://your-backend-api/signup",
+        data
+      );
+      toast.success("Signed up successfully!", {
+        theme: "dark",
+      });
+    } catch (error) {
+      const errorMessage =
+        error.response?.data?.message ||
+        "Failed to sign up. Please try again later.";
+      toast.error(errorMessage, {
+        theme: "dark",
+      });
+    }
   };
 
   return (
     <div className="container-fluid h-sm-auto signup-page d-flex align-items-center justify-content-center p-0">
+      <ToastContainer position="top-right" />
       <div className="row w-100">
         <div className="col-md-6 d-flex h-sm-auto align-items-center justify-content-center right-section p-2">
           <div className="card form-card-parent h-sm-auto px-4 pt-3 pb-1 shadow-lg border-0">
@@ -86,6 +128,9 @@ const Signup = () => {
                     <i className="fa-solid fa-key"></i>
                   </span>
                 </div>
+                {error.includes("Password") && (
+                  <p className="text-danger mt-1">{error}</p>
+                )}
               </div>
 
               <div className="mb-3">
@@ -106,6 +151,9 @@ const Signup = () => {
                     <i className="fa-solid fa-key"></i>
                   </span>
                 </div>
+                {error.includes("Passwords") && (
+                  <p className="text-danger mt-1">{error}</p>
+                )}
               </div>
 
               <div className="form-check mb-3">
@@ -132,6 +180,9 @@ const Signup = () => {
                   as user
                 </button>
               </div>
+              {error && !error.includes("Password") && (
+                <p className="text-danger mt-2">{error}</p>
+              )}
               <p className="text-center mt-3 already-word">
                 Already have an account?{" "}
                 <Link to="/login" className="login-word">
